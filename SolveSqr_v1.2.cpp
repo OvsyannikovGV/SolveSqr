@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 #include <math.h>
 
 const int INF_ROOTS = -1;
@@ -10,8 +10,8 @@ int test_mode ();
 
 int main () {
 
-	printf("#SQUARE EQUATION SOLVER 9000 + TESTER v1.2\n");
-	printf("# (c) Gleb Ovsyannikoff 2017\n\n");
+	std::cout << "#SQUARE EQUATION SOLVER 9000 + TESTER v1.2\n"
+	          << "# (c) Gleb Ovsyannikoff 2017\n\n";
 
 	if (test_mode () == 0)
 		solving_mode ();
@@ -21,13 +21,12 @@ int main () {
 
 int SolveSqr (double a, double b, double c, double* x1, double* x2) {
 
-	int end = -2;
+	int end = 3;
 
 	double d = 0;
 
 	*x1 = 0;
 	*x2 = 0;
-
 
 	if (a == 0) {
 		if (b == 0) {
@@ -60,7 +59,7 @@ int SolveSqr (double a, double b, double c, double* x1, double* x2) {
 }
 
 int test_SolveSqr () {
-	                     /*a  b  c  x1 x2  n*/
+	/*a  b  c  x1 x2  n*/
 	double test[6][5] = {{0, 0, 0, 0, 0},
 	                     {0, 0, 2, 0, 0},
 	                     {0, 5, 6, -1.2, 0},
@@ -74,12 +73,18 @@ int test_SolveSqr () {
 	for (i = 0; i <= 5; i++) {
 		n = SolveSqr(test[i][0], test[i][1], test[i][2], &x1, &x2);
 		if ((n != testN[i]) || (x1 != test[i][3]) || (x2 != test[i][4])) {
-			printf ("ERROR\na = %lg\nb = %lg\nc = %lg\n"
-					"expected result\nx1 = %lg\nx2 = %lg\nn = %d\n"
-					"got result\nx1 = %lg\nx2 = %lg\nn = %d\n\n",
-			        test[i][0], test[i][1], test[i][2],
-			        test[i][3], test[i][4], testN[i],
-		        	x1, x2, n);
+			std::cout << "ERROR\n"
+			          << "a = " << test[i][0] << "\n"
+			          << "b = " << test[i][1] << "\n"
+			          << "c = " << test[i][2] << "\n"
+			          << "expected result\n"
+			          << "x1 = " << test[i][3] << "\n"
+			          << "x2 = " << test[i][4] << "\n"
+			          << "n = " << testN[i] << "\n"
+			          << "got result\n"
+			          << "x1 = " << x1 << "\n"
+			          << "x2 = " << x2 << "\n"
+			          << "n = " << n << "\n\n";
 			end = 1;
 		}
 	}
@@ -92,38 +97,38 @@ void solving_mode () {
 	double a=0, b=0, c=0, x1=0, x2=0;
 	int n=0;
 
-	printf("Enter coefficients from equation\n"
-			"a*x^2 + b*x + c = 0\n");
+	std::cout << "Enter coefficients from equation\n"
+	          << "a*x^2 + b*x + c = 0\n";
 
-	printf("write a: ");
-	scanf("%lg", &a);
-	printf("write b: ");
-	scanf("%lg", &a);
-	printf("write c: ");
-	scanf("%lg", &a);
+	std::cout << "write a: ";
+	std::cin >> a;
+	std::cout << "write b: ";
+	std::cin >> a;
+	std::cout << "write c: ";
+	std::cin >> a;
 
 	n = SolveSqr(a, b, c, &x1, &x2);
 
 	switch (n) {
 
 		case 0:
-			printf ("The equation has no roots");
+			std::cout << "The equation has no roots\n";
 			break;
 
 		case 1:
-			printf ("The equation has one root\nx = %lg\n", x1);
+			std::cout << "The equation has one root\nx = " << x1 << "\n";
 			break;
 
 		case 2:
-			printf ("The equation has two roots\nx1 = %lg\nx2 = %lg\n", x1, x2);
+			std::cout << "The equation has two roots\nx1 = " << x1 << "\nx2 = " << x2 << "\n";
 			break;
 
 		case INF_ROOTS:
-			printf ("Any number is a root of the equation\n");
+			std::cout << "Any number is a root of the equation\n";
 			break;
 
 		default:
-			printf ("ERROR n switch\n");
+			std::cout << "ERROR n switch\n";
 	}
 }
 
@@ -134,11 +139,11 @@ int test_mode () {
 	test = test_SolveSqr ();
 
 	if (test == 0) {
-		printf ("system check OK\n\n");
+		std::cout << "system check OK\n\n";
 	}
 	else {
-		printf ("system check failed\n"
-				"program is finished\n");
+		std::cout << "system check failed\n"
+		          << "program is finished\n";
 	}
 	return test;
 }
