@@ -19,6 +19,21 @@ int main () {
 	return 0;
 }
 
+//‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
+//! Solves a square equation a*x^2 + b*x + c = 0
+//!
+//! @param [in] a a‐coefficient
+//! @param [in] b b‐coefficient
+//! @param [in] c c‐coefficient
+//! @param [out] x1 Pointer to the 1st root
+//! @param [out] x2 Pointer to the 2nd root
+//!
+//! @return Number of roots
+//!
+//! @note In case of infinite number of roots,
+//! returns INF_ROOTS.
+//‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
+
 int SolveSqr (double a, double b, double c, double* x1, double* x2) {
 
 	int end = 3;
@@ -58,6 +73,16 @@ int SolveSqr (double a, double b, double c, double* x1, double* x2) {
 	return end;
 }
 
+//‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
+//! Tests function SolveSqr
+//!
+//! @return 0 if tested function work properly,
+//! 1 if tested function does not work correctly
+//!
+//! @note when tested function gives uncorrect
+//! answer, outputs information about error 
+//‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
+
 int test_SolveSqr () {
 	/*a  b  c  x1 x2  n*/
 	double test[6][5] = {{0, 0, 0, 0, 0},
@@ -73,7 +98,7 @@ int test_SolveSqr () {
 	for (i = 0; i <= 5; i++) {
 		n = SolveSqr(test[i][0], test[i][1], test[i][2], &x1, &x2);
 		if ((n != testN[i]) || (x1 != test[i][3]) || (x2 != test[i][4])) {
-			std::cout << "ERROR\n"
+			std::cout << "ERROR " << i << ":\n"
 			          << "a = " << test[i][0] << "\n"
 			          << "b = " << test[i][1] << "\n"
 			          << "c = " << test[i][2] << "\n"
@@ -91,6 +116,10 @@ int test_SolveSqr () {
 
 	return end;
 }
+
+//‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
+//! Create some kind of interface for user
+//‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
 
 void solving_mode () {
 
@@ -131,6 +160,13 @@ void solving_mode () {
 			std::cout << "ERROR n switch\n";
 	}
 }
+
+//‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
+//! tells user about result of test_SolveSqr
+//!
+//! @return 0 if SolveSqr work properly,
+//! 1 if SolveSqr does not work correctly
+//‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
 
 int test_mode () {
 
