@@ -132,9 +132,9 @@ void solving_mode () {
 	std::cout << "write a: ";
 	std::cin >> a;
 	std::cout << "write b: ";
-	std::cin >> a;
+	std::cin >> b;
 	std::cout << "write c: ";
-	std::cin >> a;
+	std::cin >> c;
 
 	n = SolveSqr(a, b, c, &x1, &x2);
 
