@@ -1,2 +1,2 @@
 # SolveSqr
-Solves square root equasions $`ax^2+bx+c=0`$
+Solves square root equations $`ax^2+bx+c=0`$
